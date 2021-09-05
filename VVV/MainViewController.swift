@@ -61,20 +61,19 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         makeUI()
+        actions()
     }
     
     func makeUI(){
         view.backgroundColor = .lightGray
-    
+        
         //MARK:- ADDING SUBVIEWS
         view.addSubview(scroll)
-        
         scroll.addSubview(getButton)
         scroll.addSubview(postButton)
         scroll.addSubview(downloadButton)
         scroll.addSubview(uploadButton)
         scroll.addSubview(ourCourcesButton)
-        
         
         //MARK:- CONSTRAINTS
         scroll.snp.makeConstraints { make in
@@ -85,8 +84,7 @@ class MainViewController: UIViewController {
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(80)
             make.centerX.equalToSuperview()
-            //make.top.equalToSuperview().inset(30)
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(30)
+            make.top.equalToSuperview().inset(30)
         }
         
         postButton.snp.makeConstraints { make in
@@ -114,8 +112,19 @@ class MainViewController: UIViewController {
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(80)
             make.centerX.equalToSuperview()
-            make.top.equalTo(uploadButton.snp.bottom).offset(900)
+            make.top.equalTo(uploadButton.snp.bottom).offset(30)
             make.bottom.equalTo(scroll.snp.bottom).inset(-30)
         }
+    }
+    
+    func actions(){
+        getButton.addTarget(self, action: #selector(getPressed), for: .touchUpInside)
+    }
+    
+    @objc func getPressed(){
+        let vc = ViewController()
+        vc.modalPresentationStyle = .fullScreen
+//        present(vc, animated: true, completion: nil)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

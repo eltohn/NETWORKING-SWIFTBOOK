@@ -34,7 +34,6 @@ class ViewController: UIViewController {
         view.addSubview(imageView)
         view.addSubview(button)
         
-        
         imageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.centerX.equalToSuperview()
